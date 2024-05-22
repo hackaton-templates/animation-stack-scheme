@@ -1,5 +1,5 @@
 import { Node, NodeProps, Rect } from "@motion-canvas/2d";
-import { easeInOutElastic, makeRef } from "@motion-canvas/core";
+import { all, easeInOutElastic, makeRef } from "@motion-canvas/core";
 import { SchemaNodeConfig } from "../config";
 
 type SchemaNodeProps = NodeProps & {
@@ -30,6 +30,7 @@ export default class SchemaNode extends Node {
         gap={10}
         smoothCorners
         radius={8}
+        opacity={0}
         scale={0}
       >
         {props.children}
@@ -38,6 +39,9 @@ export default class SchemaNode extends Node {
   }
 
   public *animate() {
-    yield* this.rectBase.scale(1, 0.5, easeInOutElastic);
+    yield* all(
+      this.rectBase.scale(1, 0.5, easeInOutElastic),
+      this.rectBase.opacity(1, 0.5)
+    );
   }
 }
