@@ -1,18 +1,27 @@
 import { Node, NodeProps, Rect } from "@motion-canvas/2d";
 import { easeInOutElastic, makeRef } from "@motion-canvas/core";
-import { SceneConfig } from "../config";
+import { SchemaNodeConfig } from "../config";
+
+type SchemaNodeProps = NodeProps & {
+  nodeType?: "default" | "api";
+};
 
 export default class SchemaNode extends Node {
   public readonly rectBase: Rect;
 
-  constructor(props?: NodeProps) {
+  constructor(props?: SchemaNodeProps) {
     super({ ...props, children: null });
+
+    const nodeType = props?.nodeType ?? "default";
+    const fill = SchemaNodeConfig.background[nodeType];
+    const lineDash = [nodeType == "api" ? 10 : 0];
 
     this.add(
       <Rect
         ref={makeRef(this, "rectBase")}
-        fill={SceneConfig.background}
+        fill={fill}
         stroke="#000"
+        lineDash={lineDash}
         lineWidth={2}
         layout
         direction="column"

@@ -5,3 +5,10 @@ export const GridConfig = {
 export const SceneConfig = {
   background: "#ffffff",
 };
+
+export const SchemaNodeConfig = {
+  background: {
+    default: "#ffffff",
+    api: "#f0f0f0",
+  },
+};
