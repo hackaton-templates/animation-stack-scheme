@@ -40,8 +40,8 @@ export default class SchemaNode extends Node {
 
   public *animate() {
     yield* all(
-      this.rectBase.scale(1, 0.5, easeInOutElastic),
-      this.rectBase.opacity(1, 0.5)
+      this.rectBase.scale(1, 0.8, easeInOutElastic),
+      this.rectBase.opacity(1, 0.8)
     );
   }
 }
