@@ -5,7 +5,9 @@ import path from "path";
 
 export default defineConfig({
   plugins: [
-    motionCanvas(),
+    motionCanvas({
+      project: ["./src/example-project-1"],
+    }),
     ffmpeg(),
   ],
   resolve: {
