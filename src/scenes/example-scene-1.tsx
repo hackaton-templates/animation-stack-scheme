@@ -19,6 +19,8 @@ import postgresIcon from "../../assets/images/logos/postgres.png";
 import gptIcon from "../../assets/images/logos/chatgpt.png";
 import pythonIcon from "../../assets/images/logos/python.png";
 import SchemaGroup from "../components/schema-group";
+import SchemaLegend from "../components/schema-legend";
+import SchemaLegendText from "../components/schema-legend-text";
 
 export default makeScene2D(function* (view) {
   view.fill(SceneConfig.background);
@@ -26,6 +28,15 @@ export default makeScene2D(function* (view) {
 
   const nodes = createRefArray<SchemaNode>();
   const lines = createRefArray<SchemaLine>();
+
+  const legend = createRef<SchemaLegend>();
+  view.add(
+    <SchemaLegend ref={legend} viewLocalMatrix={view.worldToLocal()}>
+      <SchemaLegendText text="БухУчётКом" variant="header" />
+      <SchemaLegendText text="lulz-team" variant="text" fontStyle="italic" />
+    </SchemaLegend>
+  );
+  yield* legend().animate();
 
   view.add(
     <SchemaNode ref={nodes}>

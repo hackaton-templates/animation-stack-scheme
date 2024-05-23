@@ -7,15 +7,15 @@
     },
     {
       "name": "backend",
-      "targetTime": 3.1893698635668883
+      "targetTime": 5.9064905601534035
     },
     {
       "name": "frontend",
-      "targetTime": 5.327517150226542
+      "targetTime": 10.205461362753116
     },
     {
       "name": "end",
-      "targetTime": 17.00672008395243
+      "targetTime": 22.201928780134672
     }
   ],
   "seed": 1789842743
