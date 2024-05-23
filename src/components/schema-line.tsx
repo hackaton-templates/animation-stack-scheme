@@ -1,8 +1,13 @@
-import { Line, LineProps } from "@motion-canvas/2d";
+import { Circle, Line, LineProps } from "@motion-canvas/2d";
 import {
   ReferenceArray,
   Vector2,
+  any,
+  chain,
   createDeferredEffect,
+  createRefArray,
+  range,
+  waitFor,
 } from "@motion-canvas/core";
 import SchemaNode from "./schema-node";
 
@@ -10,9 +15,12 @@ type SchemaLineProps = LineProps & {
   nodes: ReferenceArray<SchemaNode>;
   instant?: boolean;
   straight?: boolean;
+  circles?: boolean;
 };
 
 export default class SchemaLine extends Line {
+  private circles = createRefArray<Circle>();
+
   constructor(props: SchemaLineProps) {
     super({
       ...props,
@@ -22,6 +30,23 @@ export default class SchemaLine extends Line {
       zIndex: -1,
       end: props.instant ? 1 : 0,
     });
+
+    if (props.circles) {
+      this.add(
+        range(props.nodes.length * 2).map((i) => (
+          <Circle
+            ref={this.circles}
+            position={props.nodes[0].position()}
+            width={24}
+            height={24}
+            fill={"#999"}
+            stroke={"#000"}
+            lineWidth={2}
+            opacity={0}
+          />
+        ))
+      );
+    }
 
     createDeferredEffect(() => {
       const points = props.nodes.map((node) => node.position());
@@ -37,6 +62,28 @@ export default class SchemaLine extends Line {
 
   public *animate() {
     yield* this.end(1, 1);
+  }
+
+  public *animateCircles() {
+    const time = 1;
+    yield* any(
+      ...this.circles.map((circle, index) => {
+        return chain(
+          waitFor(time * index),
+          chain(
+            ...this.points().map((p, i) => {
+              if (i == 0) {
+                return chain(circle.opacity(1, 0), circle.position(p, 0));
+              }
+              if (i == this.points().length - 1) {
+                return chain(circle.position(p, time), circle.opacity(0, 0));
+              }
+              return circle.position(p, time);
+            })
+          )
+        );
+      })
+    );
   }
 
   private intermediatePoints(points: Vector2[]) {
