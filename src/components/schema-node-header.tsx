@@ -1,7 +1,9 @@
-import { Txt, TxtProps } from "@motion-canvas/2d";
+import { Txt, type TxtProps } from "@motion-canvas/2d";
+
+export type SchemaNodeHeaderProps = TxtProps & {};
 
 export default class SchemaNodeHeader extends Txt {
-  constructor(props?: TxtProps) {
+  constructor(props?: SchemaNodeHeaderProps) {
     super({
       ...props,
       fontFamily: "Montserrat",

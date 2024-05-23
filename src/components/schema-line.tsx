@@ -11,7 +11,7 @@ import {
 } from "@motion-canvas/core";
 import SchemaNode from "./schema-node";
 
-type SchemaLineProps = LineProps & {
+export type SchemaLineProps = LineProps & {
   nodes: SchemaNode[];
   instant?: boolean;
   straight?: boolean;

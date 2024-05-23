@@ -2,7 +2,7 @@ import { Node, NodeProps, Rect } from "@motion-canvas/2d";
 import { all, easeInOutElastic, makeRef } from "@motion-canvas/core";
 import { SchemaNodeConfig } from "../config";
 
-type SchemaNodeProps = NodeProps & {
+export type SchemaNodeProps = NodeProps & {
   nodeType?: "default" | "api";
   instant?: boolean;
 };
