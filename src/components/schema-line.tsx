@@ -1,6 +1,10 @@
-import { Circle, Line, LineProps } from "@motion-canvas/2d";
 import {
-  ReferenceArray,
+  Circle,
+  Line,
+  LineProps,
+  PossibleCanvasStyle,
+} from "@motion-canvas/2d";
+import {
   Vector2,
   any,
   chain,
@@ -16,6 +20,8 @@ export type SchemaLineProps = LineProps & {
   instant?: boolean;
   straight?: boolean;
   circles?: boolean;
+  circleFill?: PossibleCanvasStyle;
+  circleStroke?: PossibleCanvasStyle;
 };
 
 export default class SchemaLine extends Line {
@@ -39,8 +45,8 @@ export default class SchemaLine extends Line {
             position={props.nodes[0].position()}
             width={24}
             height={24}
-            fill={"#999"}
-            stroke={"#000"}
+            fill={props.circleFill || "#999"}
+            stroke={props.circleStroke || "#000"}
             lineWidth={2}
             opacity={0}
           />
@@ -65,7 +71,7 @@ export default class SchemaLine extends Line {
   }
 
   public *animateCircles() {
-    const time = 1;
+    const time = 1.5;
     yield* any(
       ...this.circles.map((circle, index) => {
         return chain(
