@@ -1,4 +1,12 @@
 {
   "extends": "@motion-canvas/2d/tsconfig.project.json",
-  "include": ["src"]
+  "include": ["src"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["assets/*"]
+    },
+  },
 }
