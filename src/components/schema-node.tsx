@@ -4,6 +4,7 @@ import { SchemaNodeConfig } from "../config";
 
 type SchemaNodeProps = NodeProps & {
   nodeType?: "default" | "api";
+  instant?: boolean;
 };
 
 export default class SchemaNode extends Node {
@@ -30,8 +31,8 @@ export default class SchemaNode extends Node {
         gap={10}
         smoothCorners
         radius={8}
-        opacity={0}
-        scale={0}
+        opacity={props.instant ? 1 : 0}
+        scale={props.instant ? 1 : 0}
       >
         {props.children}
       </Rect>
