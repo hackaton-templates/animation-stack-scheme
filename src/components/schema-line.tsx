@@ -12,7 +12,7 @@ import {
 import SchemaNode from "./schema-node";
 
 type SchemaLineProps = LineProps & {
-  nodes: ReferenceArray<SchemaNode>;
+  nodes: SchemaNode[];
   instant?: boolean;
   straight?: boolean;
   circles?: boolean;
