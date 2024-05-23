@@ -75,11 +75,11 @@ export default makeScene2D(function* (view) {
     <SchemaGroup ref={microservices} y={240} header="Microservices">
       <SchemaNode ref={innerNodes}>
         <Img src={pythonIcon} width={64} height={64} />
-        <SchemaNodeHeader>Receipt{"\n"}Recognition</SchemaNodeHeader>
+        <SchemaNodeHeader children={"Receipt\nRecognition"} />
       </SchemaNode>
       <SchemaNode ref={innerNodes}>
         <Img src={pythonIcon} width={64} height={64} />
-        <SchemaNodeHeader>XLSX{"\n"}Parser</SchemaNodeHeader>
+        <SchemaNodeHeader children={"XLSX\nParser"} />
       </SchemaNode>
     </SchemaGroup>
   );
