@@ -14,7 +14,7 @@ import {
   waitFor,
 } from "@motion-canvas/core";
 import SchemaNode from "./schema-node";
-import { _cfg, _props } from "../config";
+import { _cfg, _props } from "@/config";
 
 export type SchemaLineProps = LineProps & {
   nodes: SchemaNode[];

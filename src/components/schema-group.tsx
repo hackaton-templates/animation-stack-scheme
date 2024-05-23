@@ -1,7 +1,7 @@
 import { Layout } from "@motion-canvas/2d";
 import SchemaNode, { type SchemaNodeProps } from "./schema-node";
 import SchemaNodeHeader from "./schema-node-header";
-import { _props } from "../config";
+import { _props } from "@/config";
 
 type SchemaGroupProps = SchemaNodeProps & {
   header?: string;

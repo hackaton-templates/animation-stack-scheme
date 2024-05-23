@@ -7,20 +7,21 @@ import {
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
-import SchemaNode from "../components/schema-node";
-import SchemaNodeHeader from "../components/schema-node-header";
-import { _props } from "../config";
-import { createGrid } from "../util/grid";
-import SchemaLine from "../components/schema-line";
 
-import vueIcon from "../../assets/images/logos/vue.png";
-import nuxtIcon from "../../assets/images/logos/nuxt.png";
-import postgresIcon from "../../assets/images/logos/postgres.png";
-import gptIcon from "../../assets/images/logos/chatgpt.png";
-import pythonIcon from "../../assets/images/logos/python.png";
-import SchemaGroup from "../components/schema-group";
-import SchemaLegend from "../components/schema-legend";
-import SchemaLegendText from "../components/schema-legend-text";
+import SchemaLine from "@components/schema-line";
+import SchemaGroup from "@components/schema-group";
+import SchemaLegend from "@components/schema-legend";
+import SchemaLegendText from "@components/schema-legend-text";
+import SchemaNode from "@components/schema-node";
+import SchemaNodeHeader from "@components/schema-node-header";
+import { _props } from "@/config";
+import { createGrid } from "@/util/grid";
+
+import vueIcon from "@assets/images/logos/vue.png";
+import nuxtIcon from "@assets/images/logos/nuxt.png";
+import postgresIcon from "@assets/images/logos/postgres.png";
+import gptIcon from "@assets/images/logos/chatgpt.png";
+import pythonIcon from "@assets/images/logos/python.png";
 
 export default makeScene2D(function* (view) {
   _props("scene", view);

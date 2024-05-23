@@ -1,6 +1,6 @@
 import { Rect, type RectProps } from "@motion-canvas/2d";
 import { Vector2, all, easeOutCubic } from "@motion-canvas/core";
-import { _props } from "../config";
+import { _props } from "@/config";
 
 export type SchemaLegendProps = RectProps & {
   viewLocalMatrix: DOMMatrix;

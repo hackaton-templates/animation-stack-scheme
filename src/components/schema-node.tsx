@@ -8,7 +8,7 @@ import {
   easeOutElastic,
   makeRef,
 } from "@motion-canvas/core";
-import { _props } from "../config";
+import { _props } from "@/config";
 
 export type SchemaNodeProps = NodeProps & {
   nodeType?: "default" | "api";

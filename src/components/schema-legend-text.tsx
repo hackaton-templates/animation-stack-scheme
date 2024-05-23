@@ -1,5 +1,5 @@
 import { Txt, TxtProps } from "@motion-canvas/2d";
-import { _props } from "../config";
+import { _props } from "@/config";
 
 export type SchemaLegendTextProps = TxtProps & {
   variant?: "header" | "subheader" | "text";

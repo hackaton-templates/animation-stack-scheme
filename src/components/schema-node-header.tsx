@@ -1,5 +1,5 @@
 import { Txt, type TxtProps } from "@motion-canvas/2d";
-import { _props } from "../config";
+import { _props } from "@/config";
 
 export type SchemaNodeHeaderProps = TxtProps & {};
 
