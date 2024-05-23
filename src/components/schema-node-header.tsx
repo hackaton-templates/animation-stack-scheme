@@ -1,4 +1,5 @@
 import { Txt, type TxtProps } from "@motion-canvas/2d";
+import { _props } from "../config";
 
 export type SchemaNodeHeaderProps = TxtProps & {};
 
@@ -12,5 +13,6 @@ export default class SchemaNodeHeader extends Txt {
       fontStyle: "italic",
       textAlign: "center",
     });
+    _props(`node.node-header`, this);
   }
 }

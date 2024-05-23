@@ -1,6 +1,7 @@
 import { Layout } from "@motion-canvas/2d";
 import SchemaNode, { type SchemaNodeProps } from "./schema-node";
 import SchemaNodeHeader from "./schema-node-header";
+import { _props } from "../config";
 
 type SchemaGroupProps = SchemaNodeProps & {
   header?: string;
@@ -9,7 +10,7 @@ type SchemaGroupProps = SchemaNodeProps & {
 export default class SchemaGroup extends SchemaNode {
   constructor(props?: SchemaGroupProps) {
     super({ ...props, children: null });
-    this.rectBase.fill("#f0f0f0");
+    _props("group", this.rectBase);
     this.rectBase.gap(20);
 
     if (props.header) {

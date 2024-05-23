@@ -9,7 +9,7 @@ import {
 } from "@motion-canvas/core";
 import SchemaNode from "../components/schema-node";
 import SchemaNodeHeader from "../components/schema-node-header";
-import { SceneConfig } from "../config";
+import { _props } from "../config";
 import { createGrid } from "../util/grid";
 import SchemaLine from "../components/schema-line";
 
@@ -23,7 +23,7 @@ import SchemaLegend from "../components/schema-legend";
 import SchemaLegendText from "../components/schema-legend-text";
 
 export default makeScene2D(function* (view) {
-  view.fill(SceneConfig.background);
+  _props("scene", view);
   yield* createGrid(view);
 
   const nodes = createRefArray<SchemaNode>();

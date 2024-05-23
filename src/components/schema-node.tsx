@@ -8,7 +8,7 @@ import {
   easeOutElastic,
   makeRef,
 } from "@motion-canvas/core";
-import { SchemaNodeConfig } from "../config";
+import { _props } from "../config";
 
 export type SchemaNodeProps = NodeProps & {
   nodeType?: "default" | "api";
@@ -25,15 +25,10 @@ export default class SchemaNode extends Node {
     this.stack = createRefArray<Rect>();
 
     const nodeType = props?.nodeType ?? "default";
-    const fill = SchemaNodeConfig.background[nodeType];
-    const lineDash = [nodeType == "api" ? 10 : 0];
 
     this.add(
       <Rect
         ref={makeRef(this, "rectBase")}
-        fill={fill}
-        stroke="#000"
-        lineDash={lineDash}
         lineWidth={2}
         layout
         direction="column"
@@ -48,6 +43,7 @@ export default class SchemaNode extends Node {
         {props.children}
       </Rect>
     );
+    _props(`node.base.${nodeType}`, this.rectBase);
 
     if (props.stack) {
       const sizeSignal = createSignal(() => {
@@ -58,9 +54,6 @@ export default class SchemaNode extends Node {
           ref={this.stack}
           width={sizeSignal().x}
           height={sizeSignal().y}
-          fill={fill}
-          stroke="#000"
-          lineDash={lineDash}
           lineWidth={2}
           smoothCorners
           radius={8}
@@ -73,9 +66,6 @@ export default class SchemaNode extends Node {
           ref={this.stack}
           width={sizeSignal().x}
           height={sizeSignal().y}
-          fill={fill}
-          stroke="#000"
-          lineDash={lineDash}
           lineWidth={2}
           smoothCorners
           radius={8}
@@ -83,6 +73,7 @@ export default class SchemaNode extends Node {
           opacity={0}
         />
       );
+      this.stack.forEach((s) => _props(`node.${nodeType}`, s));
     }
   }
 

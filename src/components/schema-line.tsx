@@ -14,6 +14,7 @@ import {
   waitFor,
 } from "@motion-canvas/core";
 import SchemaNode from "./schema-node";
+import { _cfg, _props } from "../config";
 
 export type SchemaLineProps = LineProps & {
   nodes: SchemaNode[];
@@ -31,11 +32,11 @@ export default class SchemaLine extends Line {
     super({
       ...props,
       points: [],
-      stroke: "#000",
       lineWidth: 4,
       zIndex: -1,
       end: props.instant ? 1 : 0,
     });
+    _props("line.base", this);
 
     if (props.circles) {
       this.add(
@@ -45,8 +46,8 @@ export default class SchemaLine extends Line {
             position={props.nodes[0].position()}
             width={24}
             height={24}
-            fill={props.circleFill || "#999"}
-            stroke={props.circleStroke || "#000"}
+            fill={props.circleFill || _props("line.circles.fill")}
+            stroke={props.circleStroke || _props("line.circles.stroke")}
             lineWidth={2}
             opacity={0}
           />
