@@ -3,11 +3,27 @@
   "timeEvents": [
     {
       "name": "start",
-      "targetTime": 1
+      "targetTime": 4.5019778211491
+    },
+    {
+      "name": "services",
+      "targetTime": 18.969705407957694
+    },
+    {
+      "name": "gateway",
+      "targetTime": 24.799847585748545
+    },
+    {
+      "name": "stack",
+      "targetTime": 32.628262619470924
+    },
+    {
+      "name": "databases",
+      "targetTime": 45.9146630904197
     },
     {
       "name": "end",
-      "targetTime": 1
+      "targetTime": 81.82263352820212
     }
   ],
   "seed": 1348521088
