@@ -73,7 +73,7 @@ export default class SchemaNode extends Node {
           opacity={0}
         />
       );
-      this.stack.forEach((s) => _props(`node.${nodeType}`, s));
+      this.stack.forEach((s) => _props(`node.base.${nodeType}`, s));
     }
   }
 
