@@ -2,15 +2,18 @@ import SchemaNode from "@/components/schema-node";
 import SchemaNodeHeader from "@/components/schema-node-header";
 import { _props } from "@/config";
 import { createGrid } from "@/util/grid";
-import { Img, makeScene2D } from "@motion-canvas/2d";
+import { Circle, Img, Layout, makeScene2D } from "@motion-canvas/2d";
 import {
   all,
   createRefMap,
+  easeOutElastic,
   loop,
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
 import SchemaLine from "@components/schema-line";
+import SchemaLegend from "@/components/schema-legend";
+import SchemaLegendText from "@/components/schema-legend-text";
 
 import goIcon from "@assets/images/logos/go.png";
 import pythonIcon from "@assets/images/logos/python.png";
@@ -28,6 +31,49 @@ export default makeScene2D(function* (view) {
 
   const services = createRefMap<SchemaNode>();
   const lines = createRefMap<SchemaLine>();
+
+  const legend = createRefMap<SchemaLegend>();
+  view.add(
+    <SchemaLegend ref={legend.legend} viewLocalMatrix={view.worldToLocal()}>
+      <SchemaLegendText text="Example Project 2" variant="header" />
+      <SchemaLegendText text="team" variant="text" fontStyle="italic" />
+      <Layout
+        ref={legend.grpc}
+        gap={15}
+        layout
+        alignItems="center"
+        height={0}
+        clip
+      >
+        <Circle
+          fill="#008aff"
+          stroke="#000"
+          lineWidth={2}
+          width={32}
+          height={32}
+        />
+        <SchemaLegendText text="GRPC" variant="subheader" />
+      </Layout>
+      <Layout
+        ref={legend.rest}
+        gap={15}
+        layout
+        alignItems="center"
+        height={0}
+        clip
+      >
+        <Circle
+          fill="lime"
+          stroke="#000"
+          lineWidth={2}
+          width={32}
+          height={32}
+        />
+        <SchemaLegendText text="REST API" variant="subheader" />
+      </Layout>
+    </SchemaLegend>
+  );
+  yield* legend.legend().animate();
 
   view.add(
     <SchemaNode ref={services.service1} stack>
@@ -72,6 +118,7 @@ export default makeScene2D(function* (view) {
       ref={lines.gateway_1}
       nodes={[services.gateway(), services.service1()]}
       circles
+      circleFill={"#008aff"}
     />
   );
   view.add(
@@ -79,6 +126,7 @@ export default makeScene2D(function* (view) {
       ref={lines.gateway_2}
       nodes={[services.gateway(), services.service2()]}
       circles
+      circleFill={"#008aff"}
     />
   );
   view.add(
@@ -86,9 +134,12 @@ export default makeScene2D(function* (view) {
       ref={lines.gateway_3}
       nodes={[services.gateway(), services.service3()]}
       circles
+      circleFill={"#008aff"}
     />
   );
   yield* all(
+    legend.grpc().height(null, 1, easeOutElastic),
+    legend.grpc().margin([20, 0, 0, 0], 1, easeOutElastic),
     services.gateway().animate(),
     waitFor(
       0.5,
@@ -154,6 +205,7 @@ export default makeScene2D(function* (view) {
       ref={lines.giga_1}
       nodes={[services.service3(), services.gpt1()]}
       circles
+      circleFill={"lime"}
     />
   );
   yield* all(
@@ -201,6 +253,7 @@ export default makeScene2D(function* (view) {
       ref={lines.nginx}
       nodes={[services.nginx(), services.gateway()]}
       circles
+      circleFill={"lime"}
     />
   );
   view.add(
@@ -208,6 +261,7 @@ export default makeScene2D(function* (view) {
       ref={lines.web}
       nodes={[services.web(), services.nginx()]}
       circles
+      circleFill={"lime"}
     />
   );
   view.add(
@@ -215,10 +269,12 @@ export default makeScene2D(function* (view) {
       ref={lines.mobile}
       nodes={[services.mobile(), services.nginx()]}
       circles
+      circleFill={"lime"}
     />
   );
 
   yield* all(
+    legend.rest().height(null, 1, easeOutElastic),
     services.nginx().animate(),
     waitFor(0.5, services.web().animate()),
     waitFor(0.5, lines.nginx().animate())
